@@ -27,9 +27,11 @@ namespace IdentitySample
 
             bundles.Add(new ScriptBundle("~/bundles/otherjs").Include(
                       "~/Content/js/admin.js",
-                      "~/Content/js/demo.js",
                       "~/Content/js/helper.js",
                       "~/Content/js/script.js",
+                      "~/Content/plugins/node-waves/waves.js",
+                      "~/Content/plugins/raphael/raphael.min.js",
+                      "~/Content/plugins/morrisjs/morris.js",
                       "~/Scripts/respond.js"
                       ));
 
@@ -41,7 +43,9 @@ namespace IdentitySample
                       "~/Content/css/themes/all-themes.css",
                       "~/Content/plugins/node-waves/waves.css",
                       "~/Content/plugins/animate-css/animate.css",
-                      "~/Content/plugins/morrisjs/morris.css"
+                      "~/Content/plugins/morrisjs/morris.css",
+                      "~/Content/font/fontgoogle.css",
+                      "~/Content/font/fonticon.css"
                       ));
         }
     }
