@@ -71,13 +71,14 @@
                         <h4 class="modal-title">Thông tin sản phẩm</h4>
                     </div>
                     <div class="modal-body">
-                        <div><label>Mã sản phẩm: </label> {{product.Code}}</div>
-                        <div><label>Tên sản phẩm: </label> {{product.Title}}</div>
-                        <div><label>Mô tả sản phẩm: </label> {{product.Description}}</div>
-                        <div><label>Giá sản phẩm: </label> {{product.Price}}</div>
+                        <div><label>Mã sản phẩm: </label> <input ng-model="product.Code" class="form-control" required/></div>
+                        <div><label>Tên sản phẩm: </label> <input ng-model="product.Title" class="form-control" required/></div>
+                        <div><label>Mô tả sản phẩm: </label> <input ng-model="product.Description" class="form-control" required/></div>
+                        <div><label>Giá sản phẩm: </label> <input ng-model="product.Price" class="form-control" required/></div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="BtnClick()">{{BtnText}}</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                     </div>
                 </div>
 

@@ -50,6 +50,60 @@ namespace MobildeShop.Controllers
             return Json(product, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult JsonCreate(Product product)
+        {
+                    
+            if (product == null)
+            {
+                return Json(new { success = "false" }, JsonRequestBehavior.AllowGet);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return Json(new { success = "false" }, JsonRequestBehavior.AllowGet);
+            }
+
+            db.Products.Add(product);
+            db.SaveChanges();
+
+            return Json(new { success = "true" }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult JsonUpdate(Product product)
+        {
+
+            if (product == null)
+            {
+                return Json(new { success = "false" }, JsonRequestBehavior.AllowGet);
+            }
+
+            Product findProduct = db.Products.Find(product.id);
+            if (findProduct == null)
+            {
+                return Json(new { success = "false" }, JsonRequestBehavior.AllowGet);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return Json(new { success = "false" }, JsonRequestBehavior.AllowGet);
+            }
+
+            db.Entry(product).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (System.Data.Entity.Infrastructure.DbUpdateConcurrencyException)
+            {
+                return Json(new { success = "false" }, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(new { success = "true" }, JsonRequestBehavior.AllowGet);
+        }
+
+
+
         // GET: Products/Create
         public ActionResult Create()
         {
