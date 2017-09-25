@@ -35,6 +35,21 @@ namespace MobildeShop.Controllers
             return View(product);
         }
 
+
+        public JsonResult JsonDetails(int? id)
+        {
+            if (id == null)
+            {
+                return Json( new { success = "false" }, JsonRequestBehavior.AllowGet);
+            }
+            Product product = db.Products.Find(id);
+            if (product == null)
+            {
+                return Json(new { success = "false" }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(product, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: Products/Create
         public ActionResult Create()
         {

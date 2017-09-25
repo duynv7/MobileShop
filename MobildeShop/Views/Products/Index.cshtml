@@ -5,47 +5,98 @@
 }
 
 <h2>Index</h2>
+<div ng-app="app">
+    <div ng-controller="productController">
+        <p>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#mainModal" ng-click="create()">Thêm mới</button>
+        </p>
+        <table class="table table-bordered table-striped" id="example">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Code)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Code)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        <button class="btn purple btn-default">Sửa</button>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Code)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th></th>
-    </tr>
+                        <button class="btn btn-info" data-id="@item.id" ng-click="loadProduct(@item.id)" data-toggle="modal" data-target="#mainModal">Chi tiết</button>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Code)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
+
+                        <input type="checkbox" class="deleteId" />
+                        @*@Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id=item.id })*@
+                    </td>
+                </tr>
+                }
+            </tbody>
+
+        </table>
+
+        <!-- Modal -->
+        <div id="mainModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Thông tin sản phẩm</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div><label>Mã sản phẩm: </label> {{product.Code}}</div>
+                        <div><label>Tên sản phẩm: </label> {{product.Title}}</div>
+                        <div><label>Mô tả sản phẩm: </label> {{product.Description}}</div>
+                        <div><label>Giá sản phẩm: </label> {{product.Price}}</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/SPA/productcontroller.js"></script>
+    <script src="~/Scripts/SPA/productService.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
+                     
 }
-
-</table>
