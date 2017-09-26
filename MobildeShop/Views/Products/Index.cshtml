@@ -4,61 +4,67 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Danh sách sản phẩm</h2>
 <div ng-app="app">
     <div ng-controller="productController">
         <p>
             <button class="btn btn-primary" data-toggle="modal" data-target="#mainModal" ng-click="create()">Thêm mới</button>
         </p>
-        <table class="table table-bordered table-striped" id="example">
+        <div class="col-md-2">
+            <label>Hiển thị: </label><input class="form-control" type="number" min="1" ng-model="displayNum" ng-change="loadProducts(1)" maxlength="3" />
+        </div>
+        <div class="col-md-6">
+            <label>Tìm kiếm: </label><input class="form-control" ng-model="searchText" ng-change="loadProducts(1)" />
+        </div>
+        <table class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.Code)
+                        Mã SP
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Title)
+                        Tên SP
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Description)
+                        Mô tả
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Price)
+                        Giá
                     </th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model) {
-                <tr>
+                <tr ng-repeat="item in productList">
                     <td>
-                        @Html.DisplayFor(modelItem => item.Code)
+                        {{item.Code}}
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Title)
+                        {{item.Title}}
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Description)
+                        {{item.Description}}
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Price)
+                        {{item.Price}}
                     </td>
                     <td>
-                        <button class="btn purple btn-default">Sửa</button>
+                        <button class="btn btn-default" ng-click="loadProduct(item.id)" data-toggle="modal" data-target="#mainModal">Sửa</button>
 
-                        <button class="btn btn-info" data-id="@item.id" ng-click="loadProduct(@item.id)" data-toggle="modal" data-target="#mainModal">Chi tiết</button>
+                        <button class="btn btn-info">Chi tiết</button>
+                        <button class="btn btn-danger">Xóa</button>
 
-
-                        <input type="checkbox" class="deleteId" />
-                        @*@Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-                        @Html.ActionLink("Details", "Details", new { id=item.id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id=item.id })*@
                     </td>
                 </tr>
-                }
             </tbody>
 
         </table>
+        <ul class="pagination" ng-repeat=" i in totalPage">
+            <li>
+                <button type="button" class="btn btn-default" ng-click="loadProducts(i)">{{i}}</button>
+            </li>
+        </ul>
+
 
         <!-- Modal -->
         <div id="mainModal" class="modal fade" role="dialog">
@@ -71,13 +77,13 @@
                         <h4 class="modal-title">Thông tin sản phẩm</h4>
                     </div>
                     <div class="modal-body">
-                        <div><label>Mã sản phẩm: </label> <input ng-model="product.Code" class="form-control" required/></div>
-                        <div><label>Tên sản phẩm: </label> <input ng-model="product.Title" class="form-control" required/></div>
-                        <div><label>Mô tả sản phẩm: </label> <input ng-model="product.Description" class="form-control" required/></div>
-                        <div><label>Giá sản phẩm: </label> <input ng-model="product.Price" class="form-control" required/></div>
+                        <div><label>Mã sản phẩm: </label> <input ng-model="product.Code" class="form-control" /></div>
+                        <div><label>Tên sản phẩm: </label> <input ng-model="product.Title" class="form-control" /></div>
+                        <div><label>Mô tả sản phẩm: </label> <input ng-model="product.Description" class="form-control" /></div>
+                        <div><label>Giá sản phẩm: </label> <input ng-model="product.Price" class="form-control" type="number" min="0"/></div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="BtnClick()">{{BtnText}}</button>
+                        <button type="button" class="btn btn-primary" ng-disabled="!product.Code || !product.Title || !product.Description || !product.Price" data-dismiss="modal" ng-click="BtnClick()">{{BtnText}}</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                     </div>
                 </div>
@@ -95,9 +101,9 @@
     <script src="~/Scripts/SPA/productcontroller.js"></script>
     <script src="~/Scripts/SPA/productService.js"></script>
     <script>
-        $(document).ready(function () {
-            $('#example').DataTable();
-        });
+        //$(document).ready(function () {
+        //    $('#example').DataTable();
+        //});
     </script>
                      
 }
