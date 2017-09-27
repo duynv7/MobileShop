@@ -20,16 +20,16 @@
             <thead>
                 <tr>
                     <th>
-                        Mã SP
+                        <button class="btn btn-link"  ng-click="sort('')" >Mã SP <span ng-show="sortString == ''" ng-class="isAsc == true ? 'glyphicon glyphicon-arrow-up' : 'glyphicon glyphicon-arrow-down'"></span></button>
                     </th>
                     <th>
-                        Tên SP
+                        <button class="btn btn-link"  ng-click="sort('Title')" >Tên SP <span ng-show="sortString == 'Title'" ng-class="isAsc == true ? 'glyphicon glyphicon-arrow-up' : 'glyphicon glyphicon-arrow-down'"></span></button>
                     </th>
                     <th>
-                        Mô tả
+                        <button class="btn btn-link"  ng-click="sort('Description')" >Mã SP <span ng-show="sortString == 'Description'" ng-class="isAsc == true ? 'glyphicon glyphicon-arrow-up' : 'glyphicon glyphicon-arrow-down'"></span></button>
                     </th>
                     <th>
-                        Giá
+                        <button class="btn btn-link"  ng-click="sort('Price')" >Mã SP <span ng-show="sortString == 'Price'" ng-class="isAsc == true ? 'glyphicon glyphicon-arrow-up' : 'glyphicon glyphicon-arrow-down'"></span></button>
                     </th>
                     <th></th>
                 </tr>

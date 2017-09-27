@@ -16,12 +16,16 @@
         $scope.displayNum = 5
         $scope.currentPage = 1;
         $scope.totalPage = [];
+            // Sort parameters
+        $scope.sortString = '';
+        $scope.isAsc = true;
 
 
             // load product list based on search text, page size and current page number
         $scope.loadProducts = function (pageNum) {
             $scope.currentPage = pageNum;
-            var promiseGet = productService.getAll($scope.searchText, $scope.displayNum, $scope.currentPage - 1); //The MEthod Call from service
+            var promiseGet = productService.getAll($scope.searchText, $scope.displayNum, $scope.currentPage - 1,
+                $scope.sortString, $scope.isAsc); //The MEthod Call from service
             promiseGet.then(function (pl) {
                 $scope.productList = pl.data.list
                 //console.log($scope.productList)
@@ -82,6 +86,13 @@
                 });
             }
 
+        }
+
+            // sorting function
+        $scope.sort = function (propName) {          
+            $scope.isAsc = !$scope.isAsc;
+            $scope.sortString = propName;
+            $scope.loadProducts($scope.currentPage);
         }
 
             // refresh data when create new

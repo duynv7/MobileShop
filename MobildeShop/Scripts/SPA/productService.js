@@ -8,11 +8,11 @@
     //}
 
 
-    this.getAll = function (stext, num, page) {
+    this.getAll = function (stext, num, page, sort, asc) {
         var request = $http({
             method: "get",
             url: "/products/SearchProducts",
-            params: { 'text': stext, 'number': num, 'page': page }
+            params: { 'text': stext, 'number': num, 'page': page, 'sortBy':  sort, 'isAsc' : asc}
         });
         return request;
     }
