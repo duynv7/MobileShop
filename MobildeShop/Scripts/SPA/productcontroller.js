@@ -7,7 +7,7 @@
         function controller($scope, productService) {
         // modal button parameters
         $scope.BtnText = "Thêm mới";
-        $scope.editable = false;
+        $scope.editable = true;
         //product parameters
         $scope.product;
         $scope.productList;
@@ -99,6 +99,7 @@
         $scope.create = function () {
             $scope.product = null;
             $scope.BtnText = "Thêm mới";
+            $scope.editable = true;
 
         }
        
