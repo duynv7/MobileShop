@@ -10,13 +10,13 @@
         <p>
             <button class="btn btn-primary" data-toggle="modal" data-target="#mainModal" ng-click="create()">Thêm mới</button>
         </p>
-        <div class="col-md-2">
-            <label>Hiển thị: </label><input class="form-control" type="number" min="1" ng-model="displayNum" ng-change="loadProducts(1)" maxlength="3" />
+        <div class="col-sm-2">
+            <label>Hiển thị: </label><input class="form-control" type="number" min="1" ng-model="displayNum" ng-change="loadProducts(1)" size="3" />
         </div>
         <div class="col-md-6">
             <label>Tìm kiếm: </label><input class="form-control" ng-model="searchText" ng-change="loadProducts(1)" />
         </div>
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped" id="example">
             <thead>
                 <tr>
                     <th>
@@ -49,10 +49,10 @@
                         {{item.Price}}
                     </td>
                     <td>
-                        <button class="btn btn-default" ng-click="loadProduct(item.id)" data-toggle="modal" data-target="#mainModal">Sửa</button>
+                        <button class="btn btn-default" ng-click="loadProduct(item.id, true, 'Sửa')" data-toggle="modal" data-target="#mainModal">Sửa</button>
 
-                        <button class="btn btn-info">Chi tiết</button>
-                        <button class="btn btn-danger">Xóa</button>
+                        <button class="btn btn-info" ng-click="loadProduct(item.id, false, '')" data-toggle="modal" data-target="#mainModal">Chi tiết</button>
+                        <button class="btn btn-danger" ng-click="loadProduct(item.id, false, 'Xóa')" data-toggle="modal" data-target="#mainModal">Xóa</button>
 
                     </td>
                 </tr>
@@ -61,7 +61,7 @@
         </table>
         <ul class="pagination" ng-repeat=" i in totalPage">
             <li>
-                <button type="button" class="btn btn-default" ng-click="loadProducts(i)">{{i}}</button>
+                <button type="button" ng-class="currentPage == i ? 'btn btn-primary' : 'btn btn-default'" ng-click="loadProducts(i)">{{i}}</button>
             </li>
         </ul>
 
@@ -77,13 +77,13 @@
                         <h4 class="modal-title">Thông tin sản phẩm</h4>
                     </div>
                     <div class="modal-body">
-                        <div><label>Mã sản phẩm: </label> <input ng-model="product.Code" class="form-control" /></div>
-                        <div><label>Tên sản phẩm: </label> <input ng-model="product.Title" class="form-control" /></div>
-                        <div><label>Mô tả sản phẩm: </label> <input ng-model="product.Description" class="form-control" /></div>
-                        <div><label>Giá sản phẩm: </label> <input ng-model="product.Price" class="form-control" type="number" min="0"/></div>
+                        <div><label>Mã sản phẩm: </label> <input ng-model="product.Code" class="form-control" ng-disabled="!editable"/></div>
+                        <div><label>Tên sản phẩm: </label> <input ng-model="product.Title" class="form-control" ng-disabled="!editable"/></div>
+                        <div><label>Mô tả sản phẩm: </label> <input ng-model="product.Description" class="form-control" ng-disabled="!editable"/></div>
+                        <div><label>Giá sản phẩm: </label> <input ng-model="product.Price" class="form-control" type="number" min="0" ng-disabled="!editable"/></div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" ng-disabled="!product.Code || !product.Title || !product.Description || !product.Price" data-dismiss="modal" ng-click="BtnClick()">{{BtnText}}</button>
+                        <button type="button" class="btn btn-primary" ng-show="BtnText" ng-disabled="!product.Code || !product.Title || !product.Description || !product.Price" data-dismiss="modal" ng-click="BtnClick()">{{BtnText}}</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                     </div>
                 </div>
@@ -99,11 +99,5 @@
     <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
     <script src="~/Scripts/angular.min.js"></script>
     <script src="~/Scripts/SPA/productcontroller.js"></script>
-    <script src="~/Scripts/SPA/productService.js"></script>
-    <script>
-        //$(document).ready(function () {
-        //    $('#example').DataTable();
-        //});
-    </script>
-                     
+    <script src="~/Scripts/SPA/productService.js"></script>                                     
 }
