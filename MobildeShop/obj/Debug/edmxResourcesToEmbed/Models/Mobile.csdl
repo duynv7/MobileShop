@@ -9,7 +9,7 @@
     <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="DOB" Type="DateTime" Precision="0" />
+    <Property Name="DOB" Type="DateTime" Precision="3" />
     <Property Name="IDNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="MonthlyIncome" Type="Double" Nullable="false" />
     <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Customers" FromRole="Customers" ToRole="Orders" />

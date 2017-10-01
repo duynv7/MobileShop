@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 09/21/2017 16:06:22
--- Generated from EDMX file: D:\DuAn\MoblieShopv1\MobildeShop\Models\Mobile.edmx
+-- Date Created: 10/02/2017 02:40:20
+-- Generated from EDMX file: D:\Sources\Mobile\MobileShop\MobildeShop\Models\Mobile.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -24,7 +24,7 @@ IF OBJECT_ID(N'[dbo].[FK_Orders_Product]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Orders] DROP CONSTRAINT [FK_Orders_Product];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Payment_Orders]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Payment] DROP CONSTRAINT [FK_Payment_Orders];
+    ALTER TABLE [dbo].[Payments] DROP CONSTRAINT [FK_Payment_Orders];
 GO
 
 -- --------------------------------------------------
@@ -40,11 +40,11 @@ GO
 IF OBJECT_ID(N'[dbo].[Orders]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Orders];
 GO
-IF OBJECT_ID(N'[dbo].[Payment]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Payment];
+IF OBJECT_ID(N'[dbo].[Payments]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Payments];
 GO
-IF OBJECT_ID(N'[dbo].[Product]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Product];
+IF OBJECT_ID(N'[dbo].[Products]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Products];
 GO
 IF OBJECT_ID(N'[dbo].[sysdiagrams]', 'U') IS NOT NULL
     DROP TABLE [dbo].[sysdiagrams];

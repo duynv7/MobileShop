@@ -10,7 +10,7 @@
         <p>
             <button class="btn btn-primary" data-toggle="modal" data-target="#mainModal" ng-click="create()">Thêm mới</button>
         </p>
-        <div class="col-sm-2">
+        <div class="col-sm-1">
             <label>Hiển thị: </label><input class="form-control" type="number" min="1" ng-model="displayNum" ng-change="loadProducts(1)" size="3" />
         </div>
         <div class="col-md-6">
@@ -60,7 +60,7 @@
             </tbody>
 
         </table>
-        <ul class="pagination" ng-repeat=" i in totalPage">
+        <ul class="pagination" ng-repeat="i in totalPage">
             <li>
                 <button type="button" ng-class="currentPage == i ? 'btn btn-primary' : 'btn btn-default'" ng-click="loadProducts(i)">{{i}}</button>
             </li>
