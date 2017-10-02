@@ -29,6 +29,7 @@ namespace MobildeShop.Controllers
             {
                 return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
             }
+            c.DOB = DateTime.Parse(c.DOB?.ToString("dd/MM/yyyy"));
             return Json(new { c }, JsonRequestBehavior.AllowGet);
         }
 

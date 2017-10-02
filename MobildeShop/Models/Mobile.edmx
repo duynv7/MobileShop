@@ -62,6 +62,7 @@
     <Property Name="PayStatus" Type="nchar" Nullable="true" MaxLength="10" />
     <Property Name="Seller" Type="nvarchar" Nullable="true" MaxLength="50" />
     <Property Name="ProductId" Type="int" Nullable="true" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="true" />
   </EntityType>
   <EntityType Name="Payments">
     <Key>
@@ -173,6 +174,7 @@
           <NavigationProperty Name="Customer" Relationship="Self.FK_Orders_Customers" FromRole="Orders" ToRole="Customers" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Orders_Product" FromRole="Orders" ToRole="Product" />
           <NavigationProperty Name="Payments" Relationship="Self.FK_Payment_Orders" FromRole="Orders" ToRole="Payment" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
@@ -305,6 +307,7 @@
           <ScalarProperty Name="PayStatus" ColumnName="PayStatus" />
           <ScalarProperty Name="Seller" ColumnName="Seller" />
           <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

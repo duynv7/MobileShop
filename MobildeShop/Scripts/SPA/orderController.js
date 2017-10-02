@@ -1,30 +1,39 @@
-﻿var app = angular.module("app", [])
+﻿var app = angular.module("appOrder", [])
 
 app.controller('orderController', controller);
 
-controller.$inject = ['$scope', 'orderService'];
+controller.$inject = ['$scope', 'orderService', '$filter'];
 
-function controller($scope, orderService) {
+function controller($scope, orderService, $filter) {
     $scope.customer;
     $scope.order;
-    $scope.customer.id = -1;
 
     $scope.getCustomer = function (phone) {
         var promiseGet = orderService.getCustomerByPhone(phone);
         promiseGet.then(function (pl) {
-            $scope.customer = pl.data;
+            $scope.customer = pl.data.c;
+            
+           // $scope.customer.DOB = $filter('date')($scope.customer.DOB, 'dd-MM-yyyy');
         },
             function (errorPl) {
                 $log.error('failure loading Product', errorPl);
             });
+        $scope.customer.Phone = phone
 
     }
+
+    $scope.onBlur = function () {
+        $scope.getCustomer($scope.customer.Phone)
+        //console.log($scope.customer.Phone)
+        console.log($scope.customer)
+    };
+
     // handle Action Button inside modal
     $scope.BtnClick = function () {
         // Check ton tai customer
-        $scope.getCustomer($scope.customer.Phone)
+
         // Neu ton tai
-        if ($scope.customer.id > -1) {
+        if ($scope.customer.id > 0) {
             $scope.order.CustomerId = $scope.customer.id
             var editCustomer = orderService.putCustomer($scope.customer.id, $scope.customer);
             editustomer.then(function (pl) {

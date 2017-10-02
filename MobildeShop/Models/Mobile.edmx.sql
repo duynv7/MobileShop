@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/02/2017 02:40:20
+-- Date Created: 10/02/2017 23:40:48
 -- Generated from EDMX file: D:\Sources\Mobile\MobileShop\MobildeShop\Models\Mobile.edmx
 -- --------------------------------------------------
 
@@ -61,7 +61,7 @@ CREATE TABLE [dbo].[Customers] (
     [Phone] nvarchar(50)  NOT NULL,
     [Email] nvarchar(50)  NULL,
     [Address] nvarchar(50)  NULL,
-    [DOB] datetime  NULL,
+    [DOB] date  NULL,
     [IDNumber] nvarchar(50)  NULL,
     [MonthlyIncome] float  NOT NULL
 );
@@ -85,10 +85,11 @@ CREATE TABLE [dbo].[Orders] (
     [TotalAmount] real  NOT NULL,
     [PaidAmount] real  NOT NULL,
     [MonthlyPay] real  NOT NULL,
-    [PayMethod] nvarchar(50)  NULL,
+    [PayMethod] int  NULL,
     [PayStatus] nchar(10)  NULL,
     [Seller] nvarchar(50)  NULL,
-    [ProductId] int  NULL
+    [ProductId] int  NULL,
+    [CreatedDate] datetime  NULL
 );
 GO
 

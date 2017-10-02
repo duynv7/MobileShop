@@ -255,6 +255,7 @@
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Mobile.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\OrderCustomer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
