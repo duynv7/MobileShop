@@ -16,7 +16,7 @@ namespace MobildeShop.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpGet]
         public JsonResult GetCustomerByPhone(string phone)
         {
             if (String.IsNullOrEmpty(phone))
@@ -32,7 +32,21 @@ namespace MobildeShop.Controllers
             return Json(new { c }, JsonRequestBehavior.AllowGet);
         }
 
-        
+        [HttpPost]
+        public JsonResult PostCustomer(Customer customer)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+            }
+
+            db.Customers.Add(customer);
+            db.SaveChanges();
+
+            return Json(customer.id, JsonRequestBehavior.AllowGet);
+        }
+
+
 
         // GET: Orders/Details/5
         public ActionResult Details(int id)

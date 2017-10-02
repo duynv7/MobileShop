@@ -21,7 +21,7 @@
     this.postCustomer = function (Customer) {
         var request = $http({
             method: "post",
-            url: "/api/CustomersAPI/",
+            url: "/customers/PostCustomer",
             data: Customer
         });
         return request;

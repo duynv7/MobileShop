@@ -31,6 +31,7 @@ namespace MobildeShop.Models
         public string PayStatus { get; set; }
         public string Seller { get; set; }
         public Nullable<int> ProductId { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual Product Product { get; set; }
