@@ -26,6 +26,12 @@ function controller($scope, orderService) {
         // Neu ton tai
         if ($scope.customer.id > -1) {
             $scope.order.CustomerId = $scope.customer.id
+            var editCustomer = orderService.putCustomer($scope.customer.id, $scope.customer);
+            editustomer.then(function (pl) {
+                //Message successful
+            }, function (err) {
+                console.log("Err" + err);
+            });
         }
         else {
             var addCustomer = orderService.postCustomer($scope.customer);
