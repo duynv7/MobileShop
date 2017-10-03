@@ -64,6 +64,13 @@ function controller($scope, orderService, $filter) {
 
     }
 
+    // sorting function
+    $scope.sort = function (propName) {
+        $scope.isAsc = !$scope.isAsc;
+        $scope.sortString = propName;
+        $scope.loadProducts($scope.currentPage);
+    }
+
 
 
 }

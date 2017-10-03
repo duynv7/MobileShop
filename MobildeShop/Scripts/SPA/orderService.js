@@ -9,6 +9,15 @@
         return request;
     }
 
+    this.getAll = function (stext, num, page, sort, asc) {
+        var request = $http({
+            method: "get",
+            url: "/products/SearchOrder",
+            params: { 'text': stext, 'number': num, 'page': page, 'sortBy': sort, 'isAsc': asc }
+        });
+        return request;
+    }
+
     this.putCustomer = function (id, Customer) {
         var request = $http({
             method: "put",
