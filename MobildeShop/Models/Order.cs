@@ -17,6 +17,7 @@ namespace MobildeShop.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Order()
         {
+            this.PayMethod = 1;
             this.Payments = new HashSet<Payment>();
         }
     
@@ -27,7 +28,7 @@ namespace MobildeShop.Models
         public float TotalAmount { get; set; }
         public float PaidAmount { get; set; }
         public float MonthlyPay { get; set; }
-        public string PayMethod { get; set; }
+        public int PayMethod { get; set; }
         public string PayStatus { get; set; }
         public string Seller { get; set; }
         public Nullable<int> ProductId { get; set; }

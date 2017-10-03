@@ -9,10 +9,14 @@ function controller($scope, orderService, $filter) {
     $scope.order;
 
     $scope.getCustomer = function (phone) {
+        
         var promiseGet = orderService.getCustomerByPhone(phone);
         promiseGet.then(function (pl) {
-            $scope.customer = pl.data.c;
-            
+            if (pl.data.Success == false) {
+                $scope.customer.Phone = phone
+            } else {
+                $scope.customer = pl.data.c;
+            }        
            // $scope.customer.DOB = $filter('date')($scope.customer.DOB, 'dd-MM-yyyy');
         },
             function (errorPl) {

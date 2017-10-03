@@ -25,7 +25,7 @@ namespace MobildeShop.Models
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
-        public Nullable<System.DateTime> DOB { get; set; }
+        public string DOB { get; set; }
         public string IDNumber { get; set; }
         public double MonthlyIncome { get; set; }
     

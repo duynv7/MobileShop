@@ -18,5 +18,6 @@ namespace MobildeShop.Models
         public string Action { get; set; }
         public string OldValue { get; set; }
         public string NewValue { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
     }
 }
