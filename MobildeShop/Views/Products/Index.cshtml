@@ -10,8 +10,8 @@
         <p>
             <button class="btn btn-primary" data-toggle="modal" data-target="#mainModal" ng-click="create()">Thêm mới</button>
         </p>
-        <div class="col-sm-1">
-            <label>Hiển thị: </label><input class="form-control" type="number" min="1" ng-model="displayNum" ng-change="loadProducts(1)" size="3" />
+        <div class="col-sm-2">
+            <label>Hiển thị: </label><input class="form-control col-md-1" type="number" min="1" ng-model="displayNum" ng-change="loadProducts(1)" size="3" />
         </div>
         <div class="col-md-6">
             <label>Tìm kiếm: </label><input class="form-control" ng-model="searchText" ng-change="loadProducts(1)" />
@@ -78,10 +78,47 @@
                         <h4 class="modal-title">Thông tin sản phẩm</h4>
                     </div>
                     <div class="modal-body">
-                        <div><label>Mã sản phẩm: </label> <input ng-model="product.Code" class="form-control" ng-disabled="!editable"/></div>
-                        <div><label>Tên sản phẩm: </label> <input ng-model="product.Title" class="form-control" ng-disabled="!editable"/></div>
-                        <div><label>Giá sản phẩm: </label> <input ng-model="product.Price" class="form-control" type="number" min="0" ng-disabled="!editable" /></div>
-                        <div><label>Mô tả sản phẩm: </label> <input ng-model="product.Description" class="form-control" ng-disabled="!editable"/></div>
+
+                        <div ng-show="editable">
+                            <div class="row">
+                                <label class=" control-label col-md-3">Mã sản phẩm: </label>
+                                <input ng-model="product.Code" class="form-control col-md-9" />
+                            </div>
+                            <div class="row">
+                                <label class=" control-label col-md-3">Tên sản phẩm: </label>
+                                <input ng-model="product.Title" class="form-control col-md-9"/>
+                            </div>
+                            <div class="row">
+                                <label class=" control-label col-md-3">Mô tả: </label>
+                                <input ng-model="product.Description" class="form-control col-md-9" />
+                            </div>
+                            <div class="row">
+                                <label class=" control-label col-md-3">Giá bán: </label>
+                                <input ng-model="product.Price" class="form-control col-md-9" type="number" min="1.0" />
+                            </div>                        
+                        </div>
+
+                        <div ng-show="!editable">
+                            <div class="row">
+                                <label class="col-md-3">Mã sản phẩm: </label><div class=" col-md-4">{{product.Code}}</div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-3">Tên sản phẩm: </label><div class=" col-md-4">{{product.Title}}</div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-3">Mô tả: </label><div class=" col-md-4">{{product.Description}}</div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-3">Giá: </label><div class=" col-md-4">{{product.Price}}</div>
+                            </div>                         
+                        </div >
+                        <div class="row">
+                            <div class="text-danger align-center" ng-show="BtnText === 'Xóa'">Bạn có chắc chắn muốn xóa không? </div>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" ng-show="BtnText" ng-disabled="!product.Code || !product.Title || !product.Price" data-dismiss="modal" ng-click="BtnClick()">{{BtnText}}</button>
