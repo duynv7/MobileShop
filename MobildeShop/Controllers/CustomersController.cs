@@ -10,10 +10,10 @@ namespace MobildeShop.Controllers
     public class CustomersController : Controller
     {
         private MobileShopEntities db = new MobileShopEntities();
-        // GET: Orders
+        // GET: Customers
         public ActionResult Index()
         {
-            return View();
+            return View(db.Customers.ToList());
         }
 
         [HttpGet]
@@ -48,77 +48,91 @@ namespace MobildeShop.Controllers
         }
 
 
-
-        // GET: Orders/Details/5
-        public ActionResult Details(int id)
+        [HttpGet]
+        public JsonResult SearchCustomers(string text, int number, int page, string sortBy, bool isAsc)
         {
-            return View();
-        }
-
-        // GET: Orders/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Orders/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
+            // filtering
+            List<Customer> list = new List<Customer>();
+            if (String.IsNullOrEmpty(text))
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                list = db.Customers.OrderBy(p => p.id).ToList();
             }
-            catch
+            else
             {
-                return View();
+                list = db.Customers.Where(p => p.Name.Contains(text) || p.Phone.Contains(text)
+                || p.Email.Contains(text) || p.Address.ToString().Contains(text) || p.IDNumber.ToString().Contains(text)).OrderBy(p => p.id).ToList();
+
             }
+
+            // sorting
+            switch (sortBy)
+            {
+                //case "Code":
+                //    if(isAsc)
+                //    {
+                //        list = list.OrderBy(p => p.Code).ToList();
+                //    }
+                //    else
+                //    {
+                //        list = list.OrderByDescending(p => p.Code).ToList();
+                //    }
+
+                //    break;
+
+                case "Name":
+                    if (isAsc)
+                    {
+                        list = list.OrderBy(p => p.Name).ToList();
+                    }
+                    else
+                    {
+                        list = list.OrderByDescending(p => p.Name).ToList();
+                    }
+
+                    break;
+
+                case "Phone":
+                    if (isAsc)
+                    {
+                        list = list.OrderBy(p => p.Phone).ToList();
+                    }
+                    else
+                    {
+                        list = list.OrderByDescending(p => p.Phone).ToList();
+                    }
+
+                    break;
+
+                case "Email":
+                    if (isAsc)
+                    {
+                        list = list.OrderBy(p => p.Email).ToList();
+                    }
+                    else
+                    {
+                        list = list.OrderByDescending(p => p.Email).ToList();
+                    }
+
+                    break;
+
+                default:
+                    if (isAsc)
+                    {
+                        list = list.OrderBy(p => p.Name).ToList();
+                    }
+                    else
+                    {
+                        list = list.OrderByDescending(p => p.Name).ToList();
+                    }
+                    break;
+
+            }
+
+
+            int count = list.Count;
+            list = list.Skip(number * page).Take(number).ToList();
+            return Json(new { list, count }, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Orders/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Orders/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Orders/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Orders/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

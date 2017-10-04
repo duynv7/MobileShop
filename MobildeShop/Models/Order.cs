@@ -28,7 +28,7 @@ namespace MobildeShop.Models
         public float TotalAmount { get; set; }
         public float PaidAmount { get; set; }
         public float MonthlyPay { get; set; }
-        public int PayMethod { get; set; }
+        public Nullable<int> PayMethod { get; set; }
         public string PayStatus { get; set; }
         public string Seller { get; set; }
         public Nullable<int> ProductId { get; set; }

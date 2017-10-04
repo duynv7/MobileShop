@@ -5,7 +5,7 @@
 }
 
 <h2>Danh sách sản phẩm</h2>
-<div ng-app="app">
+<div class="config-form" ng-app="app">
     <div ng-controller="productController">
         <p>
             <button class="btn btn-primary" data-toggle="modal" data-target="#mainModal" ng-click="create()">Thêm mới</button>
@@ -68,7 +68,7 @@
 
 
         <!-- Modal -->
-        <div id="mainModal" class="modal fade" role="dialog">
+        <div id="mainModal" class="modal fade config-input" role="dialog">
             <div class="modal-dialog">
 
                 <!-- Modal content-->
@@ -80,36 +80,36 @@
                     <div class="modal-body">
 
                         <div ng-show="editable">
-                            <div class="row">
-                                <label class=" control-label col-md-3">Mã sản phẩm: </label>
+                            <div class="row form-group">
+                                <label class="control-label col-md-3">Mã sản phẩm: </label>
                                 <input ng-model="product.Code" class="form-control col-md-9" />
                             </div>
-                            <div class="row">
-                                <label class=" control-label col-md-3">Tên sản phẩm: </label>
+                            <div class="row form-group">
+                                <label class="control-label col-md-3">Tên sản phẩm: </label>
                                 <input ng-model="product.Title" class="form-control col-md-9"/>
                             </div>
-                            <div class="row">
-                                <label class=" control-label col-md-3">Mô tả: </label>
+                            <div class="row form-group">
+                                <label class="control-label col-md-3">Mô tả: </label>
                                 <input ng-model="product.Description" class="form-control col-md-9" />
                             </div>
-                            <div class="row">
-                                <label class=" control-label col-md-3">Giá bán: </label>
+                            <div class="row form-group">
+                                <label class="control-label col-md-3">Giá bán: </label>
                                 <input ng-model="product.Price" class="form-control col-md-9" type="number" min="1.0" />
                             </div>                        
                         </div>
 
                         <div ng-show="!editable">
                             <div class="row">
-                                <label class="col-md-3">Mã sản phẩm: </label><div class=" col-md-4">{{product.Code}}</div>
+                                <label class="col-md-3">Mã sản phẩm: </label><div class="col-md-4">{{product.Code}}</div>
                             </div>
                             <div class="row">
-                                <label class="col-md-3">Tên sản phẩm: </label><div class=" col-md-4">{{product.Title}}</div>
+                                <label class="col-md-3">Tên sản phẩm: </label><div class="col-md-4">{{product.Title}}</div>
                             </div>
                             <div class="row">
-                                <label class="col-md-3">Mô tả: </label><div class=" col-md-4">{{product.Description}}</div>
+                                <label class="col-md-3">Mô tả: </label><div class="col-md-4">{{product.Description}}</div>
                             </div>
                             <div class="row">
-                                <label class="col-md-3">Giá: </label><div class=" col-md-4">{{product.Price}}</div>
+                                <label class="col-md-3">Giá: </label><div class="col-md-4">{{product.Price}}</div>
                             </div>                         
                         </div >
                         <div class="row">

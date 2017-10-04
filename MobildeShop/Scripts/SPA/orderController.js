@@ -13,10 +13,16 @@ function controller($scope, orderService, $filter) {
         var promiseGet = orderService.getCustomerByPhone(phone);
         promiseGet.then(function (pl) {
             if (pl.data.Success == false) {
+                $scope.customer.Name = null
+                $scope.customer.Email = null
+                $scope.customer.Address = null
+                $scope.customer.DOB = null
+                $scope.customer.IDNumber = null
+                $scope.customer.MonthlyIncome = null
                 $scope.customer.Phone = phone
             } else {
                 $scope.customer = pl.data.c;
-            }        
+            }
            // $scope.customer.DOB = $filter('date')($scope.customer.DOB, 'dd-MM-yyyy');
         },
             function (errorPl) {

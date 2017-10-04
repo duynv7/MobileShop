@@ -13,9 +13,28 @@ namespace MobildeShop.Controllers
     public class CustomersAPIController : ApiController
     {
         private MobileShopEntities db = new MobileShopEntities();
+        // GET: api/CustomersAPI
+        public IQueryable<Customer> GetCustomers()
+        {
+            return db.Customers;
+        }
+
+        // GET: api/CustomersAPI/5
+        [ResponseType(typeof(Customer))]
+        public IHttpActionResult GetCustomer(int id)
+        {
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(customer);
+        }
+
 
         // POST: api/CustomersAPI
-        [ResponseType(typeof(Product))]
+        [ResponseType(typeof(Customer))]
         public IHttpActionResult PostCustomer(Customer customer)
         {
             if (!ModelState.IsValid)
