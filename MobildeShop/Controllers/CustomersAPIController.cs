@@ -83,6 +83,22 @@ namespace MobildeShop.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        // DELETE: api/CustomersAPI/5
+        [ResponseType(typeof(Customer))]
+        public IHttpActionResult DeleteCustomer(int id)
+        {
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            db.Customers.Remove(customer);
+            db.SaveChanges();
+
+            return Ok(customer);
+        }
+
         private bool CustomerExists(int id)
         {
             return db.Customers.Count(e => e.id == id) > 0;

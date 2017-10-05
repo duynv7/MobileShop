@@ -20,6 +20,7 @@ function controller($scope, orderService, $filter) {
                 $scope.customer.IDNumber = null
                 $scope.customer.MonthlyIncome = null
                 $scope.customer.Phone = phone
+                $scope.customer.id = 0
             } else {
                 $scope.customer = pl.data.c;
             }
@@ -34,8 +35,11 @@ function controller($scope, orderService, $filter) {
 
     $scope.onBlur = function () {
         $scope.getCustomer($scope.customer.Phone)
+        if ($scope.customer.DOB == null) {
+            $scope.customer.DOB = Date.now()
+        }
         //console.log($scope.customer.Phone)
-        console.log($scope.customer)
+        console.log($scope.customer.DOB)
     };
 
     // handle Action Button inside modal
