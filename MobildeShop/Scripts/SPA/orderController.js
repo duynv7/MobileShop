@@ -7,6 +7,40 @@ controller.$inject = ['$scope', 'orderService', '$filter'];
 function controller($scope, orderService, $filter) {
     $scope.customer;
     $scope.order;
+    //$scope.product;
+    $scope.OrderList;
+    // Search parameters
+    $scope.searchText;
+    $scope.displayNum = 5
+    $scope.currentPage = 1;
+    $scope.totalPage = [];
+    // Sort parameters
+    $scope.sortString = '';
+    $scope.isAsc = true;
+
+
+    // load product list based on search text, page size and current page number
+    $scope.loadOrders = function (pageNum) {
+        $scope.currentPage = pageNum;
+        var promiseGet = orderService.getAll($scope.searchText, $scope.displayNum, $scope.currentPage - 1,
+            $scope.sortString, $scope.isAsc); //The MEthod Call from service
+        promiseGet.then(function (pl) {
+            $scope.OrderList = pl.data.list
+            //console.log($scope.productList)
+            pageCount = Math.ceil(pl.data.count / $scope.displayNum);
+            $scope.totalPage = [];
+            for (i = 1; i <= pageCount; i++) {
+                $scope.totalPage.push(i);
+            }
+        },
+            function (errorPl) {
+                $log.error('failure loading Product', errorPl);
+            });
+        console.log("loadorer called")
+    }
+
+    $scope.loadOrders(1);
+
 
     $scope.getCustomer = function (phone) {
         
@@ -52,6 +86,7 @@ function controller($scope, orderService, $filter) {
             var editCustomer = orderService.putCustomer($scope.customer.id, $scope.customer);
             editustomer.then(function (pl) {
                 //Message successful
+                $scope.order.CustomerId = pl.data
             }, function (err) {
                 console.log("Err" + err);
             });

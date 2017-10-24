@@ -38,7 +38,7 @@
                 function (errorPl) {
                     $log.error('failure loading Product', errorPl);
                 });
-            console.log("loadproducts called")
+            //console.log("loadproducts called")
         }
         $scope.loadProducts(1);
             // load single product to view, enable/disable input edit and change button text

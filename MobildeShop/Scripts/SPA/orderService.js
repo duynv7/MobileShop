@@ -12,7 +12,7 @@
     this.getAll = function (stext, num, page, sort, asc) {
         var request = $http({
             method: "get",
-            url: "/products/SearchOrder",
+            url: "/orders/SearchOrder",
             params: { 'text': stext, 'number': num, 'page': page, 'sortBy': sort, 'isAsc': asc }
         });
         return request;
